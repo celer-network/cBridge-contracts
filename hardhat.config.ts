@@ -33,6 +33,9 @@ const bscMainnetPrivateKey = process.env.BSC_MAINNET_PRIVATE_KEY || DEFAULT_PRIV
 const arbitrumMainnetEndpoint = process.env.ARBITRUM_MAINNET_ENDPOINT || DEFAULT_ENDPOINT;
 const arbitrumMainnetPrivateKey = process.env.ARBITRUM_MAINNET_PRIVATE_KEY || DEFAULT_PRIVATE_KEY;
 
+const polygonMainnetEndpoint = process.env.POLYGON_MAINNET_ENDPOINT || DEFAULT_ENDPOINT;
+const polygonMainnetPrivateKey = process.env.POLYGON_MAINNET_PRIVATE_KEY || DEFAULT_PRIVATE_KEY;
+
 const etherscanApiKey = process.env.ETHERSCAN_API_KEY || DEFAULT_ETHERSCAN_API_KEY;
 
 // @ts-ignore
@@ -65,6 +68,10 @@ const config: HardhatUserConfig = {
     arbitrumMainnet: {
       url: arbitrumMainnetEndpoint,
       accounts: [`0x${arbitrumMainnetPrivateKey}`]
+    },
+    polygonMainnet: {
+      url: polygonMainnetEndpoint,
+      accounts: [`0x${polygonMainnetPrivateKey}`]
     }
   },
   namedAccounts: {
