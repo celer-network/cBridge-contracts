@@ -1,6 +1,6 @@
 {
   "name": "cbridge-contracts",
-  "version": "0.0.1",
+  "version": "1.0",
   "description": "CBridge Contracts",
   "main": "index.js",
   "scripts": {

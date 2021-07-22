@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-only
 
 pragma solidity >=0.8.0 <0.9.0;
-pragma abicoder v2;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
@@ -9,7 +8,12 @@ import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 contract CBridge {
     using SafeERC20 for IERC20;
 
-    enum TransferStatus {Null, Pending, Confirmed, Refunded}
+    enum TransferStatus {
+        Null,
+        Pending,
+        Confirmed,
+        Refunded
+    }
     struct Transfer {
         address sender;
         address receiver;
@@ -60,7 +64,17 @@ contract CBridge {
         address _dstAddress
     ) external {
         bytes32 transferId = _transfer(_bridge, _token, _amount, _hashlock, _timelock);
-        emit LogNewTransferOut(transferId, msg.sender, _bridge, _token, _amount, _hashlock, _timelock, _dstChainId, _dstAddress);
+        emit LogNewTransferOut(
+            transferId,
+            msg.sender,
+            _bridge,
+            _token,
+            _amount,
+            _hashlock,
+            _timelock,
+            _dstChainId,
+            _dstAddress
+        );
     }
 
     /**
@@ -76,7 +90,17 @@ contract CBridge {
         bytes32 _srcTransferId
     ) external {
         bytes32 transferId = _transfer(_dstAddress, _token, _amount, _hashlock, _timelock);
-        emit LogNewTransferIn(transferId, msg.sender, _dstAddress, _token, _amount, _hashlock, _timelock, _srcChainId, _srcTransferId);
+        emit LogNewTransferIn(
+            transferId,
+            msg.sender,
+            _dstAddress,
+            _token,
+            _amount,
+            _hashlock,
+            _timelock,
+            _srcChainId,
+            _srcTransferId
+        );
     }
 
     /**
@@ -113,7 +137,6 @@ contract CBridge {
         IERC20(t.token).safeTransfer(t.sender, t.amount);
         emit LogTransferRefunded(_transferId);
     }
-
 
     /**
      * @dev transfer sets up a new transfer with hash time lock.
