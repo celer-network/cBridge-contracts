@@ -36,10 +36,14 @@ const arbitrumMainnetPrivateKey = process.env.ARBITRUM_MAINNET_PRIVATE_KEY || DE
 const polygonMainnetEndpoint = process.env.POLYGON_MAINNET_ENDPOINT || DEFAULT_ENDPOINT;
 const polygonMainnetPrivateKey = process.env.POLYGON_MAINNET_PRIVATE_KEY || DEFAULT_PRIVATE_KEY;
 
+const xDaiEndpoint = process.env.XDAI_ENDPOINT || DEFAULT_ENDPOINT;
+const xDaiPrivateKey = process.env.XDAI_PRIVATE_KEY || DEFAULT_PRIVATE_KEY;
+
+const okexMainnetEndpoint = process.env.OKEX_MAINNET_ENDPOINT || DEFAULT_ENDPOINT;
+const okexMainnetPrivateKey = process.env.OKEX_MAINNET_PRIVATE_KEY || DEFAULT_ENDPOINT;
+
 const etherscanApiKey = process.env.ETHERSCAN_API_KEY || DEFAULT_ETHERSCAN_API_KEY;
 
-// @ts-ignore
-// @ts-ignore
 const config: HardhatUserConfig = {
   defaultNetwork: 'hardhat',
   networks: {
@@ -72,6 +76,14 @@ const config: HardhatUserConfig = {
     polygonMainnet: {
       url: polygonMainnetEndpoint,
       accounts: [`0x${polygonMainnetPrivateKey}`]
+    },
+    xDai: {
+      url: xDaiEndpoint,
+      accounts: [`0x${xDaiPrivateKey}`]
+    },
+    okexMainnet: {
+      url: okexMainnetEndpoint,
+      accounts: [`0x${okexMainnetPrivateKey}`]
     }
   },
   namedAccounts: {
