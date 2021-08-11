@@ -1,9 +1,10 @@
 // SPDX-License-Identifier: GPL-3.0-only
 
-pragma solidity >=0.8.0 <0.9.0;
+pragma solidity 0.7.6;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+
+import "./libraries/SafeERC20.sol";
 
 contract CBridge {
     using SafeERC20 for IERC20;
@@ -25,6 +26,8 @@ contract CBridge {
     }
 
     mapping(bytes32 => Transfer) public transfers;
+
+    uint256 public immutable chainid;
 
     event LogNewTransferOut(
         bytes32 transferId,
@@ -50,6 +53,10 @@ contract CBridge {
     );
     event LogTransferConfirmed(bytes32 transferId, bytes32 preimage);
     event LogTransferRefunded(bytes32 transferId);
+
+    constructor(uint256 _chainid) {
+        chainid = _chainid;
+    }
 
     /**
      * @dev transfer sets up a new outbound transfer with hash time lock.
@@ -151,7 +158,7 @@ contract CBridge {
         require(_amount > 0, "invalid amount");
         require(_timelock > block.timestamp, "invalid timelock");
 
-        transferId = keccak256(abi.encodePacked(msg.sender, _receiver, _hashlock, block.chainid));
+        transferId = keccak256(abi.encodePacked(msg.sender, _receiver, _hashlock, chainid));
         require(transfers[transferId].status == TransferStatus.Null, "transfer exists");
 
         IERC20(_token).safeTransferFrom(msg.sender, address(this), _amount);

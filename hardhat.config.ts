@@ -5,6 +5,7 @@ import '@nomiclabs/hardhat-ethers';
 import '@nomiclabs/hardhat-etherscan';
 import '@nomiclabs/hardhat-waffle';
 import '@typechain/hardhat';
+import '@eth-optimism/hardhat-ovm';
 
 import * as dotenv from 'dotenv';
 import { HardhatUserConfig } from 'hardhat/types';
@@ -45,6 +46,12 @@ const config: HardhatUserConfig = {
   networks: {
     hardhat: {},
     localhost: { timeout: 300000 },
+    optimistic: {
+      url: 'http://127.0.0.1:8545',
+      accounts: { mnemonic: 'test test test test test test test test test test test junk' },
+      gasPrice: 15000000,          
+      ovm: true
+    },
     kovan: {
       url: kovanEndpoint,
       accounts: [`0x${kovanPrivateKey}`]
@@ -72,7 +79,7 @@ const config: HardhatUserConfig = {
     polygonMainnet: {
       url: polygonMainnetEndpoint,
       accounts: [`0x${polygonMainnetPrivateKey}`]
-    }
+    },
   },
   namedAccounts: {
     deployer: {
@@ -80,7 +87,7 @@ const config: HardhatUserConfig = {
     }
   },
   solidity: {
-    version: '0.8.4',
+    version: '0.7.6',
     settings: {
       optimizer: {
         enabled: true,
