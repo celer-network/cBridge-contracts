@@ -27,8 +27,6 @@ contract CBridge {
 
     mapping(bytes32 => Transfer) public transfers;
 
-    uint256 public immutable chainid;
-
     event LogNewTransferOut(
         bytes32 transferId,
         address sender,
@@ -53,10 +51,6 @@ contract CBridge {
     );
     event LogTransferConfirmed(bytes32 transferId, bytes32 preimage);
     event LogTransferRefunded(bytes32 transferId);
-
-    constructor(uint256 _chainid) {
-        chainid = _chainid;
-    }
 
     /**
      * @dev transfer sets up a new outbound transfer with hash time lock.
@@ -158,7 +152,11 @@ contract CBridge {
         require(_amount > 0, "invalid amount");
         require(_timelock > block.timestamp, "invalid timelock");
 
-        transferId = keccak256(abi.encodePacked(msg.sender, _receiver, _hashlock, chainid));
+        uint256 chainId;
+        assembly {
+            chainId := chainid()
+        }
+        transferId = keccak256(abi.encodePacked(msg.sender, _receiver, _hashlock, chainId));
         require(transfers[transferId].status == TransferStatus.Null, "transfer exists");
 
         IERC20(_token).safeTransferFrom(msg.sender, address(this), _amount);

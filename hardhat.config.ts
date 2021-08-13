@@ -37,10 +37,11 @@ const arbitrumMainnetPrivateKey = process.env.ARBITRUM_MAINNET_PRIVATE_KEY || DE
 const polygonMainnetEndpoint = process.env.POLYGON_MAINNET_ENDPOINT || DEFAULT_ENDPOINT;
 const polygonMainnetPrivateKey = process.env.POLYGON_MAINNET_PRIVATE_KEY || DEFAULT_PRIVATE_KEY;
 
+const optimismKovanEndpoint = process.env.OPTIMISM_KOVAN_ENDPOINT || DEFAULT_ENDPOINT;
+const optimismKovanPrivateKey = process.env.OPTIMISM_KOVAN_PRIVATE_KEY || DEFAULT_PRIVATE_KEY;
+
 const etherscanApiKey = process.env.ETHERSCAN_API_KEY || DEFAULT_ETHERSCAN_API_KEY;
 
-// @ts-ignore
-// @ts-ignore
 const config: HardhatUserConfig = {
   defaultNetwork: 'hardhat',
   networks: {
@@ -49,7 +50,7 @@ const config: HardhatUserConfig = {
     optimistic: {
       url: 'http://127.0.0.1:8545',
       accounts: { mnemonic: 'test test test test test test test test test test test junk' },
-      gasPrice: 15000000,          
+      gasPrice: 15000000,
       ovm: true
     },
     kovan: {
@@ -80,6 +81,11 @@ const config: HardhatUserConfig = {
       url: polygonMainnetEndpoint,
       accounts: [`0x${polygonMainnetPrivateKey}`]
     },
+    optimismKovan: {
+      url: optimismKovanEndpoint,
+      accounts: [`0x${optimismKovanPrivateKey}`],
+      ovm: true
+    }
   },
   namedAccounts: {
     deployer: {

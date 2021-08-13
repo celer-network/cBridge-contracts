@@ -1,11 +1,14 @@
 artifacts/
+artifacts-ovm/
 bin/
 build/
 cache/
+cache-ovm/
 deployments/
 genfiles/
 node_modules/
 typechain/
+typechain-ovm/
 
 *.pid
 *.log
