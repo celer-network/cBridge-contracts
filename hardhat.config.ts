@@ -40,6 +40,9 @@ const polygonMainnetPrivateKey = process.env.POLYGON_MAINNET_PRIVATE_KEY || DEFA
 const optimismKovanEndpoint = process.env.OPTIMISM_KOVAN_ENDPOINT || DEFAULT_ENDPOINT;
 const optimismKovanPrivateKey = process.env.OPTIMISM_KOVAN_PRIVATE_KEY || DEFAULT_PRIVATE_KEY;
 
+const optimismMainnetEndpoint = process.env.OPTIMISM_MAINNET_ENDPOINT || DEFAULT_ENDPOINT;
+const optimismMainnetPrivateKey = process.env.OPTIMISM_MAINNET_PRIVATE_KEY || DEFAULT_PRIVATE_KEY;
+
 const etherscanApiKey = process.env.ETHERSCAN_API_KEY || DEFAULT_ETHERSCAN_API_KEY;
 
 const config: HardhatUserConfig = {
@@ -84,6 +87,11 @@ const config: HardhatUserConfig = {
     optimismKovan: {
       url: optimismKovanEndpoint,
       accounts: [`0x${optimismKovanPrivateKey}`],
+      ovm: true
+    },
+    optimismMainnet: {
+      url: optimismMainnetEndpoint,
+      accounts: [`0x${optimismMainnetPrivateKey}`],
       ovm: true
     }
   },
