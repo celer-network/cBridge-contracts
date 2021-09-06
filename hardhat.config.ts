@@ -40,7 +40,7 @@ const xDaiEndpoint = process.env.XDAI_ENDPOINT || DEFAULT_ENDPOINT;
 const xDaiPrivateKey = process.env.XDAI_PRIVATE_KEY || DEFAULT_PRIVATE_KEY;
 
 const okexMainnetEndpoint = process.env.OKEX_MAINNET_ENDPOINT || DEFAULT_ENDPOINT;
-const okexMainnetPrivateKey = process.env.OKEX_MAINNET_PRIVATE_KEY || DEFAULT_ENDPOINT;
+const okexMainnetPrivateKey = process.env.OKEX_MAINNET_PRIVATE_KEY || DEFAULT_PRIVATE_KEY;
 
 const etherscanApiKey = process.env.ETHERSCAN_API_KEY || DEFAULT_ETHERSCAN_API_KEY;
 
