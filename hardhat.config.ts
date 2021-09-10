@@ -49,6 +49,8 @@ const fantomMainnetPrivateKey = process.env.FANTOM_MAINNET_PRIVATE_KEY || DEFAUL
 const avalancheMainnetEndpoint = process.env.AVALANCHE_MAINNET_ENDPOINT || DEFAULT_ENDPOINT;
 const avalancheMainnetPrivateKey = process.env.AVALANCHE_MAINNET_PRIVATE_KEY || DEFAULT_PRIVATE_KEY;
 
+const harmonyMainnetEndpoint = process.env.HARMONY_MAINNET_ENDPOINT || DEFAULT_ENDPOINT;
+const harmonyMainnetPrivateKey = process.env.HARMONY_MAINNET_PRIVATE_KEY || DEFAULT_PRIVATE_KEY;
 
 const etherscanApiKey = process.env.ETHERSCAN_API_KEY || DEFAULT_ETHERSCAN_API_KEY;
 
@@ -100,7 +102,11 @@ const config: HardhatUserConfig = {
     avalancheMainnet: {
       url: avalancheMainnetEndpoint,
       accounts: [`0x${avalancheMainnetPrivateKey}`]
-
+    }
+    ,
+    harmonyMainnet: {
+      url: harmonyMainnetEndpoint,
+      accounts: [`0x${harmonyMainnetPrivateKey}`]
     }
   },
   namedAccounts: {
