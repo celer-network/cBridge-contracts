@@ -55,6 +55,9 @@ const harmonyMainnetPrivateKey = process.env.HARMONY_MAINNET_PRIVATE_KEY || DEFA
 const hecoMainnetEndpoint = process.env.HECO_MAINNET_ENDPOINT || DEFAULT_ENDPOINT;
 const hecoMainnetPrivateKey = process.env.HECO_MAINNET_PRIVATE_KEY || DEFAULT_PRIVATE_KEY;
 
+const celoMainnetEndpoint = process.env.CELO_MAINNET_ENDPOINT || DEFAULT_ENDPOINT;
+const celoMainnetPrivateKey = process.env.CELO_MAINNET_PRIVATE_KEY || DEFAULT_PRIVATE_KEY;
+
 const etherscanApiKey = process.env.ETHERSCAN_API_KEY || DEFAULT_ETHERSCAN_API_KEY;
 
 const config: HardhatUserConfig = {
@@ -113,6 +116,10 @@ const config: HardhatUserConfig = {
     heco: {
       url: hecoMainnetEndpoint,
       accounts: [`0x${hecoMainnetPrivateKey}`]
+    },
+    celo: {
+      url: celoMainnetEndpoint,
+      accounts: [`0x${celoMainnetPrivateKey}`]
     }
   },
   namedAccounts: {
